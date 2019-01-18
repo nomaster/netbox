@@ -1,5 +1,4 @@
 *.pyc
-/netbox/netbox/configuration.py
 /netbox/netbox/ldap_config.py
 /netbox/reports/*
 !/netbox/reports/__init__.py
@@ -9,6 +8,5 @@
 !upgrade.sh
 fabfile.py
 *.swp
-gunicorn_config.py
 .DS_Store
 .vscode
