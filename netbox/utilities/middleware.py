@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import ProgrammingError
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth.middleware import RemoteUserMiddleware
 
 from .views import server_error
 
@@ -74,3 +75,7 @@ class ExceptionHandlingMiddleware(object):
         # Return a custom error message, or fall back to Django's default 500 error handling
         if custom_template:
             return server_error(request, template_name=custom_template)
+
+
+class CustomRemoteUserMiddleware(RemoteUserMiddleware):
+    header = "HTTP_X_FORWARDED_USER"

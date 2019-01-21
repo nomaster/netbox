@@ -189,6 +189,7 @@ MIDDLEWARE = (
     'utilities.middleware.ExceptionHandlingMiddleware',
     'utilities.middleware.LoginRequiredMiddleware',
     'utilities.middleware.APIVersionMiddleware',
+    'utilities.middleware.CustomRemoteUserMiddleware',
     'extras.middleware.ObjectChangeMiddleware',
 )
 
@@ -338,6 +339,7 @@ INTERNAL_IPS = (
     '::1',
 )
 
+AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.RemoteUserBackend', ]
 
 try:
     HOSTNAME = socket.gethostname()

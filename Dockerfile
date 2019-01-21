@@ -3,7 +3,7 @@ EXPOSE 80
 VOLUME /opt/netbox/netbox/media
 ENTRYPOINT ["/opt/netbox/entrypoint.sh"]
 WORKDIR /opt/netbox
-CMD ["gunicorn", "-c", "/opt/netbox/gunicorn_config.py", "netbox.wsgi"]
+CMD ["gunicorn", "-c", "/opt/netbox/gunicorn_config.py", "netbox.wsgi", "--access-logfile=-"]
 COPY gunicorn_config.py .
 COPY entrypoint.sh .
 COPY requirements.txt .
