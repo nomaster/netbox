@@ -1,3 +1,6 @@
+import os
+
+
 #########################
 #                       #
 #   Required settings   #
@@ -12,18 +15,18 @@ ALLOWED_HOSTS = ['*']
 
 # PostgreSQL database configuration.
 DATABASE = {
-    'NAME': 'netbox',         # Database name
-    'USER': 'netbox',               # PostgreSQL username
-    'PASSWORD': 'netbox',           # PostgreSQL password
-    'HOST': 'postgres',      # Database server
-    'PORT': '',               # Database port (leave blank for default)
+    'NAME': os.environ.get('NETBOX_DATABASE_NAME','netbox'),
+    'USER': os.environ.get('NETBOX_DATABASE_USER', 'netbox'),
+    'PASSWORD': os.environ.get('NETBOX_DATABASE_PASSWORD', 'netbox'),
+    'HOST': os.environ.get('NETBOX_DATABASE_HOST', 'postgres'),
+    'PORT': os.environ.get('NETBOX_DATABASE_PORT', '5432'),
 }
 
 # This key is used for secure generation of random numbers and strings. It must never be exposed outside of this file.
 # For optimal security, SECRET_KEY should be at least 50 characters in length and contain a mix of letters, numbers, and
 # symbols. NetBox will not run without this defined. For more information, see
 # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-SECRET_KEY
-SECRET_KEY = 'somesecret'
+SECRET_KEY = os.environ.get('NETBOX_SECRET_KEY', 'somesecret')
 
 
 #########################
@@ -144,7 +147,7 @@ REDIS = {
 SESSION_FILE_PATH = None
 
 # Time zone (default: UTC)
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.environ.get('NETBOX_TIME_ZONE', 'UTC')
 
 # The webhooks backend is disabled by default. Set this to True to enable it. Note that this requires a Redis
 # database be configured and accessible by NetBox.
