@@ -3,6 +3,7 @@ from django.db import ProgrammingError
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.middleware import RemoteUserMiddleware
+from django.contrib.auth.backends import RemoteUserBackend
 
 from .views import server_error
 
@@ -79,3 +80,10 @@ class ExceptionHandlingMiddleware(object):
 
 class CustomRemoteUserMiddleware(RemoteUserMiddleware):
     header = "HTTP_X_FORWARDED_USER"
+
+class CustomRemoteUserBackend(RemoteUserBackend):
+    def configure_user(self, user):
+        user.is_staff=True
+        user.is_superuser=True
+        user.save()
+        return user

@@ -339,7 +339,7 @@ INTERNAL_IPS = (
     '::1',
 )
 
-AUTHENTICATION_BACKENDS = [ 'django.contrib.auth.backends.RemoteUserBackend', ]
+AUTHENTICATION_BACKENDS = [ 'utilities.middleware.CustomRemoteUserBackend', ]
 
 try:
     HOSTNAME = socket.gethostname()
